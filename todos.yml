@@ -1,0 +1,38 @@
+- module: apt
+  params:
+    name: nginx-common
+    state: present
+
+- module: command
+  params:
+    command: "cat test.txt"
+
+- module: copy
+  params:
+    src: toCopy
+    dest: /var/www/public
+    backup: true
+
+- module: template
+  params:
+    src: mla/template/default.conf.j2
+    dest: /var/www/public/default
+    vars:
+      listen_port: 8000
+      server_name: "MyServer.com"
+
+- module: service
+  params:
+    name: docker
+    state: enabled
+
+- module: service
+  params:
+    name: docker
+    state: restarted
+
+- module: sysctl
+  params:
+    attribute: "net.core.somaxconn"
+    value: 8192
+    permanent: false

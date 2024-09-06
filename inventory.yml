@@ -1,0 +1,7 @@
+hosts:
+    webserver:
+        ssh_address: 22 192.168.174.204
+        ssh_port: 22
+        ssh_user: "aleks"
+        ssh_password: "user"
+        ssh_key_file: ""
